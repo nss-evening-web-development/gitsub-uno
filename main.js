@@ -64,3 +64,11 @@ const packages = [
         lastUpdated: "10/26/2022",
      },
   ];
+
+const overview = [
+  {
+    id: 1,
+    repoName: "",
+    favorite: true,
+  },
+];
