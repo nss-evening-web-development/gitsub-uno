@@ -18,7 +18,7 @@ const user=[
 const repos = [
   {
     id: 1,
-    name: Tester,
+    name: 'Tester',
     description: "",
     type: ""
   },
@@ -32,6 +32,7 @@ const packages = [
     },
     ];
 
+    
   const projects =[
     {
     id: 1,
@@ -46,19 +47,22 @@ const packages = [
       description: "A pet adoption form that allows you to filter, add, and adopt pets",
       lastUpdated: "10/12/2022",
     },
-    {id: 3,
+    {
+      id: 3,
       name:"Sorting Hat",
       description: "A simple quiz that randomly sorts users into a Hogearts house and expels them",
       lastUpdated: "10/12/2022",
     },
 
-      {id: 4,
+      {
+        id: 4,
         name:"Leap Frog Game",
         description: "Simple game of leapfrog made using elements from Bootstrap ",
         lastUpdated: "10/19/2022",
       },
 
-      {id: 5,
+      {
+        id: 5,
         name:"CSS Diner",
         description: "A project that somehow ties what we've learned with CSS and a diner together",
         lastUpdated: "10/26/2022",
