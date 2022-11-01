@@ -32,7 +32,7 @@ const packages = [
     },
     ];
 
-    
+
   const projects =[
     {
     id: 1,
@@ -67,4 +67,4 @@ const packages = [
         description: "A project that somehow ties what we've learned with CSS and a diner together",
         lastUpdated: "10/26/2022",
       },
-  ]
+  ];
