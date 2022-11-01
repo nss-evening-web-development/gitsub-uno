@@ -6,5 +6,5 @@ const repos = [
     name: Tester,
     description: "",
     type: ""
-  }
-]
+  },
+];
