@@ -18,7 +18,7 @@ const user=[
 const repos = [
   {
     id: 1,
-    name: Tester,
+    name: "Tester",
     description: "",
     type: ""
   },
@@ -29,5 +29,5 @@ const packages = [
     id: 1,
     name: "",
     registry: "",
-    },
-    ];
+  },
+];
