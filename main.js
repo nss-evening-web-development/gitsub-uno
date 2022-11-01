@@ -11,7 +11,6 @@ const user=[
       smName: 'LinkedIn',
       url: 'https://linkedin'
     },
-  
     ]
 }
 ];
@@ -24,3 +23,11 @@ const repos = [
     type: ""
   },
 ];
+
+const packages = [
+  {
+    id: 1,
+    name: "",
+    registry: "",
+    },
+    ];
