@@ -69,7 +69,7 @@ const projects =[
 const pinned = [
   {
     id: 1,
-    repoName: "",
+    repoName: "Pet Adoption",
     favorite: true,
   },
 ];
@@ -148,11 +148,50 @@ const projectsOnDom = (array)=> {
   }
   
 
+  const pinsOnDom = (array) => {
+    let domString = "";
+      for (const pinned of array) {
+        domString += `<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${pinned.repoName}</h5>
+          <p class="card-text favorite">${pinned.favorite}</p>
+        </div>
+      </div>`
+        }
+    
+      renderToDom("#pinnedCards", domString);
+    };
+  
+    const pinnedFormOnDom = (array) => {
+      let domString = "";
+        domString += `<form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>`
+      renderToDom("#pinnedForm", domString);
+    };
+
+
 const startApp = () => {
   projectsOnDom(projects);
-    
- }
-  
-  
+  pinsOnDom(pinned);
+  pinnedFormOnDom();
+  packageOnDom(packages);
+  packageFormOnDom();
+ };
+ 
  startApp();
-
+ 
+ 
