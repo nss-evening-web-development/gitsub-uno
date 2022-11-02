@@ -1,5 +1,5 @@
 console.log("does this work?");
-
+// data structures
 const user=[
   { name: 'Crystal Burnett',
     socials: [
@@ -63,4 +63,18 @@ const projects =[
         description: "A project that somehow ties what we've learned with CSS and a diner together",
         lastUpdated: "10/26/2022",
      },
+  ];
+
+const overview = [
+  {
+    id: 1,
+    repoName: "",
+    favorite: true,
+  },
 ];
+
+// Render to Dom Function
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = htmlToRender;
+};
