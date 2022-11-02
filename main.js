@@ -123,10 +123,3 @@ const packageOnDom = (array) => {
   renderToDom("#package-card", domString);
 
 };
-
-const startApp = () => {
-  packageOnDom(packages);
-  packageFormOnDom(packages);
-};
-
-startApp();
