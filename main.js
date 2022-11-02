@@ -65,7 +65,7 @@ const projects =[
      },
   ];
 
-const overview = [
+const pinned = [
   {
     id: 1,
     repoName: "",
@@ -77,4 +77,18 @@ const overview = [
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
+};
+
+const pinsOnDom = (array) => {
+  let domString = "";
+  for (const pinned of array) {
+    domString += `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${pinned.repoName}</h5>
+      <p class="card-text favorite">${pinned.favorite}</p>
+    </div>
+  </div>`
+    }
+
+  renderToDom("#pinnedCards", domString);
 };
