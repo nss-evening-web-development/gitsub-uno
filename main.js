@@ -28,6 +28,7 @@ const packages = [
   {
     id: 1,
     name: "",
+    description: "",
     registry: "",
   },
 ];
@@ -79,6 +80,51 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
+
+const packageFormOnDom = () => {
+  let domString = "";
+  domString += 
+  `<form>
+  <div class="mb-3">
+    <label for="packageName" class="form-label">Package</label>
+    <input type="text" class="form-control" id="packageName">
+  </div>
+  <div class="mb-3">
+    <label for="packageDescription" class="form-label">Description</label>
+    <input type="text" class="form-control" id="packageDescription">
+  </div>
+  <div class="mb-3">
+  <label for="packageRegistry" class="form-label">Registry</label>
+  <input type="text" class="form-control" id="packageRegistry">
+</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>`
+
+renderToDom("#package-form", domString);
+};
+
+const packageOnDom = (array) => {
+  let domString = "";
+  for (const item of array) {
+    domString +=`
+      <div class="card" style="width: 18rem" text-center container">
+        <h5 class="card-header p-3">
+          ${item.name}
+        </h5>
+        <div class="card-body">
+          <p class="card-text">${item.description}</p>
+          <button class="btn btn-danger" id="learn">Learn More</button>
+        </div>
+        <p class="card-footer text-muted">
+          ${item.registry}
+        </p>
+      </div>`
+  }
+
+  renderToDom("#package-card", domString);
+
+};
+
 // Creates Cards for the Projects page
 const projectsOnDom = (array)=> {
   let domString="";
@@ -109,3 +155,4 @@ const startApp = () => {
   
   
  startApp();
+
