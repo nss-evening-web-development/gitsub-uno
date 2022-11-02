@@ -32,7 +32,7 @@ const packages = [
   },
 ];
 
- const projects =[
+const projects =[
     {
     id: 1,
     name: "Calculator",
@@ -78,4 +78,3 @@ const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
 };
-
