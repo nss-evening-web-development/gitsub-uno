@@ -1,5 +1,5 @@
 console.log("does this work?");
-
+// data structures
 const user=[
   { name: 'Crystal Burnett',
     socials: [
@@ -72,3 +72,10 @@ const overview = [
     favorite: true,
   },
 ];
+
+// Render to Dom Function
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = htmlToRender;
+};
+
