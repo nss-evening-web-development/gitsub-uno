@@ -80,6 +80,7 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
+
 const packageFormOnDom = () => {
   let domString = "";
   domString += 
@@ -123,3 +124,35 @@ const packageOnDom = (array) => {
   renderToDom("#package-card", domString);
 
 };
+
+// Creates Cards for the Projects page
+const projectsOnDom = (array)=> {
+  let domString="";
+  for (const member of array) {
+    domString+=
+    `<div class="card-header">
+        <h3>
+        ${member.name}  
+        </h3>
+    <div class="card-body">
+         ${member.description} 
+        
+        <p class="card-text"> Last Updated:${member.lastUpdated}</p>
+        </div>
+  
+    </div>
+    `;
+    }
+  
+    renderToDom("#root", domString);
+  }
+  
+
+const startApp = () => {
+  projectsOnDom(projects);
+    
+ }
+  
+  
+ startApp();
+
