@@ -32,7 +32,7 @@ const packages = [
   },
 ];
 
- const projects =[
+const projects =[
     {
     id: 1,
     name: "Calculator",
@@ -102,10 +102,10 @@ const projectsOnDom = (array)=> {
   }
   
 
-  const startApp = () => {
-    projectsOnDom(projects);
+const startApp = () => {
+  projectsOnDom(projects);
     
-  }
+ }
   
   
-  startApp();
+ startApp();
