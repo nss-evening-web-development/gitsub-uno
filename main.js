@@ -79,16 +79,33 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
-const pinsOnDom = (array) => {
-  let domString = "";
-  for (const pinned of array) {
-    domString += `<div class="card" style="width: 18rem;">
+// Creates Cards for the Projects page
+const projectsOnDom = (array)=> {
+  let domString="";
+  for (const member of array) {
+    domString+=
+    `<div class="card-header">
+        <h3>
+        ${member.name}  
+        </h3>
     <div class="card-body">
-      <h5 class="card-title">${pinned.repoName}</h5>
-      <p class="card-text favorite">${pinned.favorite}</p>
+         ${member.description} 
+        
+        <p class="card-text"> Last Updated:${member.lastUpdated}</p>
+        </div>
+  
     </div>
-  </div>`
+    `;
     }
+  
+    renderToDom("#root", domString);
+  }
+  
 
-  renderToDom("#pinnedCards", domString);
-};
+const startApp = () => {
+  projectsOnDom(projects);
+    
+ }
+  
+  
+ startApp();
