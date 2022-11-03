@@ -80,7 +80,7 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
-
+// Makes form for Packages Page
 const packageFormOnDom = () => {
   let domString = "";
   domString += 
@@ -146,13 +146,33 @@ const projectsOnDom = (array)=> {
   
     renderToDom("#root", domString);
   }
+
+  const projectForm = document.querySelector('#projectForm');
+
+
+// Allows user to add a project
+const createProject=(e)=>{
+  e.preventDefault();
+ 
+  const newProjectObj={
+   id: projects.length +1,
+   name: document.querySelector('#projectName').value,
+   description: document.querySelector('#projectDescription').value,
+   lastUpdated: document.querySelector('#lastUpdated').value,
+    
+ }
+projects.push(newProjectObj)
+projectsOnDom(projects)
+projectForm.reset();
+ }
+ 
+projectForm.addEventListener('submit', createProject);
   
 
 const startApp = () => {
   projectsOnDom(projects);
-    
+   
  }
   
   
  startApp();
-
