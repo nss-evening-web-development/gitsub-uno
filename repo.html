@@ -34,9 +34,14 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Packages</a>
 
-            <h1>Repositories Page</h1>
-
-
+            <form id="new-repo">
+              <div class="name">
+                <label for="name" class="name">new repository</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name">
+              </div>
+            
+              <button type="Sort" class="btn btn-primary" id="Sort">Add</button>
+            </form>
 
           </li>
         </ul>
@@ -44,6 +49,7 @@
     </div>
   </nav>
 
+  <div id="root"></div>
 
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

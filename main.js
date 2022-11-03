@@ -100,10 +100,32 @@ const projectsOnDom = (array)=> {
   
     renderToDom("#root", domString);
   }
+
+  // creates cards for repos page
+  const reposOnDom = (repos) => {
+  let domString = "";
+  for (const repo of repos) {
+    domString += `
+    <div class="card" style="width: 18rem;">
+    <h5 class="card-title">${repo.name}</h5>
+    <div class="card-body">
+      <p class="card-description">${repo.description}</p>
+      <p class="card-traits">${repo.type}</p>
+      <button class="btn btn-danger" id="expel--${repo.id}">Expel</button>
+     </div>
+  </div>`;
+  }
+  
+  
+  return domString;
+};
+
+renderToDom("#root", reposOnDom(repos));
   
 
 const startApp = () => {
   projectsOnDom(projects);
+  reposOnDom(repos);
     
  }
   
