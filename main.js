@@ -122,10 +122,10 @@ const reposOnDom = (repos) => {
 
 
 
-renderToDom("#root",studentsOnDom(students));
+renderToDom("#root",reposOnDom(repos));
 
 
-studentsOnDom(students);
+reposOnDom(repos);
 
 const packageOnDom = (array) => {
   let domString = "";
