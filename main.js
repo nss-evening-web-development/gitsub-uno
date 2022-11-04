@@ -80,7 +80,7 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
-
+// Makes form for Packages Page
 const packageFormOnDom = () => {
   let domString = "";
   domString += 
@@ -146,9 +146,30 @@ const projectsOnDom = (array)=> {
   
     renderToDom("#root", domString);
   }
-  
 
-  const pinsOnDom = (array) => {
+  const projectForm = document.querySelector('#projectForm');
+
+
+// Allows user to add a project
+const createProject=(e)=>{
+  e.preventDefault();
+ 
+  const newProjectObj={
+   id: projects.length +1,
+   name: document.querySelector('#projectName').value,
+   description: document.querySelector('#projectDescription').value,
+   lastUpdated: document.querySelector('#lastUpdated').value,
+    
+ }
+projects.push(newProjectObj)
+projectsOnDom(projects)
+projectForm.reset();
+ }
+ 
+projectForm.addEventListener('submit', createProject);
+  
+ // Creates card for pinned repos
+const pinsOnDom = (array) => {
     let domString = "";
       for (const pinned of array) {
         domString += `<div class="card" style="width: 18rem;">
@@ -161,8 +182,9 @@ const projectsOnDom = (array)=> {
     
       renderToDom("#pinnedCards", domString);
     };
-  
-    const pinnedFormOnDom = (array) => {
+
+// Allows user to pin repos
+ const pinnedFormOnDom = (array) => {
       let domString = "";
         domString += `<form>
         <div class="mb-3">
@@ -192,5 +214,4 @@ const startApp = () => {
   packageFormOnDom();
  };
  
- 
- window.onload = startApp();
+ startApp();
