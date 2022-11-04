@@ -28,6 +28,7 @@ const packages = [
   {
     id: 1,
     name: "",
+    description: "",
     registry: "",
   },
 ];
@@ -65,10 +66,10 @@ const projects =[
      },
   ];
 
-const overview = [
+const pinned = [
   {
     id: 1,
-    repoName: "",
+    repoName: "Pet Adoption",
     favorite: true,
   },
 ];
@@ -77,6 +78,51 @@ const overview = [
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
+};
+
+
+const packageFormOnDom = () => {
+  let domString = "";
+  domString += 
+  `<form>
+  <div class="mb-3">
+    <label for="packageName" class="form-label">Package</label>
+    <input type="text" class="form-control" id="packageName">
+  </div>
+  <div class="mb-3">
+    <label for="packageDescription" class="form-label">Description</label>
+    <input type="text" class="form-control" id="packageDescription">
+  </div>
+  <div class="mb-3">
+  <label for="packageRegistry" class="form-label">Registry</label>
+  <input type="text" class="form-control" id="packageRegistry">
+</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>`
+
+renderToDom("#package-form", domString);
+};
+
+const packageOnDom = (array) => {
+  let domString = "";
+  for (const item of array) {
+    domString +=`
+      <div class="card" style="width: 18rem" text-center container">
+        <h5 class="card-header p-3">
+          ${item.name}
+        </h5>
+        <div class="card-body">
+          <p class="card-text">${item.description}</p>
+          <button class="btn btn-danger" id="learn">Learn More</button>
+        </div>
+        <p class="card-footer text-muted">
+          ${item.registry}
+        </p>
+      </div>`
+  }
+
+  renderToDom("#package-card", domString);
+
 };
 
 // Creates Cards for the Projects page
@@ -123,9 +169,46 @@ const projectsOnDom = (array)=> {
 renderToDom("#root", reposOnDom(repos));
   
 
+  const pinsOnDom = (array) => {
+    let domString = "";
+      for (const pinned of array) {
+        domString += `<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${pinned.repoName}</h5>
+          <p class="card-text favorite">${pinned.favorite}</p>
+        </div>
+      </div>`
+        }
+    
+      renderToDom("#pinnedCards", domString);
+    };
+  
+    const pinnedFormOnDom = (array) => {
+      let domString = "";
+        domString += `<form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>`
+      renderToDom("#pinnedForm", domString);
+    };
+
+
 const startApp = () => {
   projectsOnDom(projects);
   reposOnDom(repos);
+  packageOnDom(packages);
     
  }
   
