@@ -74,6 +74,13 @@ const pinned = [
   },
 ];
 
+//  Event listeners
+projectForm.addEventListener('submit', createProject);
+overviewBtn.addEventListener('click',)
+repoBtn.addEventListener('click',)
+projectsBtn.addEventListener('click',)
+packagesBtn.addEventListener('clcik',)
+
 // Render to Dom Function
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
@@ -187,7 +194,7 @@ projectsOnDom(projects)
 projectForm.reset();
  }
  
-projectForm.addEventListener('submit', createProject);
+
   
  // Creates card for pinned repos
 const pinsOnDom = (array) => {
