@@ -80,7 +80,6 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
-
 const packageFormOnDom = () => {
   let domString = "";
   domString += 
@@ -149,10 +148,8 @@ const projectsOnDom = (array)=> {
   
 
 const startApp = () => {
-  projectsOnDom(projects);
-    
- }
-  
-  
- startApp();
+  packageFormOnDom(packages);
+  packageOnDom(packages);
+};
 
+startApp();
