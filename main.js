@@ -207,25 +207,48 @@ const pinsOnDom = (array) => {
 // Allows user to pin repos
  const pinnedFormOnDom = (array) => {
       let domString = "";
-        domString += `<form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        domString += `<form id="pinForm">
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="pinRepoName">
+        <label for="floatingInput">Repository Name</label>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+        <div class="form-check form-switch">
+         <input class="form-check-input" type="checkbox" role="switch" id="favorite">
+         <label class="form-check-label" for="flexSwitchCheckDefault">Favorite</label>
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Pin</button>
       </form>`
       renderToDom("#pinnedForm", domString);
     };
 
+    const createPin = (e) => {
+      e.preventDefault();
+     
+      const createId = (array) => {
+        if (array.length) {
+          const idArray = [];
+          for (const el of array) {
+            idArray.push(el.id);
+          }
+          return Math.max(...idArray) + 1;
+        } else {
+          return 0;
+        }
+      }
+
+      const newPinnedObj = {
+        id: createId(pinned),
+        repoName: document.querySelector("#pinRepoName").value,
+        favorite: document.querySelector("#favorite").checked,
+      }
+    
+      pinned.push(newPinnedObj);
+      pinsOnDom(pinned);
+      pinForm.reset();  
+    };
+    
+    
+    pinnedForm.addEventListener('submit', createPin);
 
 const startApp = () => {
   projectsOnDom(projects);
