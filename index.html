@@ -12,33 +12,23 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-light" id="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">GitSub Uno</a>
+      <a class="navbar-brand">GitSub Uno</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <button>Overview</button>
+            <button id="overviewBtn">Overview</button>
           </li>
           <li class="nav-item">
-            <button>Repositories</button>
+            <button id="reposBtn">Repositories</button>
           </li>
           <li class="nav-item">
-            <button>Projects</button>
+            <button id="projectsBtn">Projects</button>
           </li>
           <li class="nav-item">
-            <button>Packages</button>
-
-            <form id="new-repo">
-              <div class="name">
-                <label for="name" class="name">new repository</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name">
-              </div>
-            
-              <button type="Sort" class="btn btn-primary" id="Sort">Add</button>
-            </form>
-            
+            <button id="packagesBtn">Packages</button>
           </li>
         </ul>
       </div>
@@ -51,22 +41,40 @@
     <div id="pinnedCards">pinned repos</div>
   </div>
 
-  <form id="new-repo">
-    <div class="name">
-      <label for="name" class="name">new repository</label>
-      <input type="text" class="form-control" id="name" aria-describedby="name">
-    </div>
-  
-    <button type="Sort" class="btn btn-primary" id="Sort">Add</button>
-  </form>
 
   <div id="repositories">
-
+    <div id="get"></div>
+    <form id="new-repo">
+      <div class="name">
+        <label for="name" class="name">new repository</label>
+        <input type="text" class="form-control" id="name" aria-describedby="name">
+      </div>
+  
+      <button type="Sort" class="btn btn-primary" id="Sort">Add</button>
+    </form>
   </div>
 
   <div id="projects">
     <h1>Projects Page</h1>
     <div id="root"></div>
+
+    <form id="projectForm">
+      <h3>Add a new Project</h3>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Project Title</label>
+        <input type="text" class="form-control" id="projectName" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Project Description</label>
+        <input type="text" class="form-control" id="projectDescription">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last Updated</label>
+        <input type="text" class="form-control" id="lastUpdated" aria-describedby="emailHelp">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
   </div>
 
@@ -84,6 +92,6 @@
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="main.js"></script>
-  
+
 </body>
 </html>

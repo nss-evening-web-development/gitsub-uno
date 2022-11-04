@@ -79,6 +79,26 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
+const reposOnDom = (repos) => {
+  let domString = " ";
+  for (const repo of repos) {
+    domString += `
+    <div class="card" style="width: 18rem;">
+    <h5 class="card-title">${repo.name}</h5>
+    <div class="card-body">
+      <p class="card-team">${repo.description}</p>
+      <p class="card-traits">${repo.type}</p>
+     </div>
+  </div>`;
+  }
+
+
+  return domString;
+};
+
+renderToDom("#get",reposOnDom(repos));
+
+
 // Makes form for Packages Page
 const packageFormOnDom = () => {
   let domString = "";
@@ -102,30 +122,7 @@ const packageFormOnDom = () => {
 renderToDom("#package-form", domString);
 };
 
-const reposOnDom = (repos) => {
-  let domString = " ";
-  for (const repo of repos) {
-    domString += `
-    <div class="card" style="width: 18rem;">
-    <h5 class="card-title">${repo.name}</h5>
-    <div class="card-body">
-      <p class="card-team">${repo.description}</p>
-      <p class="card-traits">${repo.type}</p>
-     </div>
-  </div>`;
-  }
-  
-  
-  return domString;
-};
 
-
-
-
-renderToDom("#root",reposOnDom(repos));
-
-
-reposOnDom(repos);
 
 const packageOnDom = (array) => {
   let domString = "";
