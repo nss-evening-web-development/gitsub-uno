@@ -27,9 +27,9 @@ const repos = [
 const packages = [
   {
     id: 1,
-    name: "",
-    description: "",
-    registry: "",
+    name: "Original JS",
+    description: "My first javascript thing",
+    registry: "npm",
   },
 ];
 
@@ -93,15 +93,12 @@ const reposOnDom = (repos) => {
   </div>`;
   }
 
-
-  return domString;
+  renderToDom("#get", domString);
 };
-
-renderToDom("#get",reposOnDom(repos));
 
 reposOnDom(repos);
 
-// Makes form for Packages Page
+// Makes form/cards for Packages Page
 const packageFormOnDom = () => {
   let domString = "";
   domString += 
@@ -125,9 +122,9 @@ renderToDom("#package-form", domString);
 };
 
 const packageOnDom = (array) => {
-  let domString = "";
+  let domString2 = "";
   for (const item of array) {
-    domString +=`
+    domString2 +=`
       <div class="card" style="width: 18rem" text-center container">
         <h5 class="card-header p-3">
           ${item.name}
@@ -142,9 +139,58 @@ const packageOnDom = (array) => {
       </div>`
   }
 
-  renderToDom("#package-card", domString);
+  renderToDom("#package-card", domString2);
 
 };
+
+const newId = (array) => {
+  if (array.length) {
+    const idArray = [];
+    for (const el of array) {
+      idArray.push(el.id);
+    }
+    return Math.max(...idArray) + 1;
+  } else {
+    return 0;
+  }
+}
+
+const repoForm = document.querySelector("#new-repo");
+
+const createRepo = (e) => {
+  e.preventDefault();
+
+  const repoObj = {
+    id: repos.length + 1,
+    name: document.querySelector("#name").value,
+  }
+
+  repos.push(repoObj);
+  reposOnDom(repos);
+  console.log(repos);
+};
+
+repoForm.addEventListener('submit', createRepo);
+
+const packageForm = document.querySelector("#package-form");
+
+const createPackage = (e) => {
+  e.preventDefault();
+
+  const packageObj = {
+    id: newId(packages),
+    name: document.querySelector("#packageName").value,
+    description: document.querySelector("#packageDescription").value,
+    registry: document.querySelector("#packageRegistry").value,
+  }
+
+  packages.push(packageObj);
+  packageOnDom(packages);
+  
+  console.log(packages);
+};
+
+packageForm.addEventListener('submit', createPackage);
 
 // Creates Cards for the Projects page
 const projectsOnDom = (array)=> {
@@ -228,11 +274,6 @@ const pinsOnDom = (array) => {
 
 
 const startApp = () => {
-  packageFormOnDom(packages);
-  packageOnDom(packages);
-
-
-startApp();
   projectsOnDom(projects);
   pinsOnDom(pinned);
   pinnedFormOnDom();
