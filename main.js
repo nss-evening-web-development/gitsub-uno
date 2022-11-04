@@ -102,7 +102,7 @@ reposOnDom(repos);
 const packageFormOnDom = () => {
   let domString = "";
   domString += 
-  `<form>
+  `<form id="packageReset">
   <div class="mb-3">
     <label for="packageName" class="form-label">Package</label>
     <input type="text" class="form-control" id="packageName">
@@ -186,7 +186,7 @@ const createPackage = (e) => {
 
   packages.push(packageObj);
   packageOnDom(packages);
-  
+  packageReset.reset();
   console.log(packages);
 };
 
