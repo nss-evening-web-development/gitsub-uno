@@ -145,7 +145,7 @@ const projectsOnDom = (array)=> {
     }
   
     renderToDom("#root", domString);
-  };
+  }
   
 
   const pinsOnDom = (array) => {
@@ -184,12 +184,13 @@ const projectsOnDom = (array)=> {
     };
 
 
-
+const startApp = () => {
   projectsOnDom(projects);
   pinsOnDom(pinned);
   pinnedFormOnDom();
   packageOnDom(packages);
   packageFormOnDom();
-
+ };
  
  
+ window.onload = startApp();
