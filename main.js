@@ -205,7 +205,7 @@ const pinsOnDom = (array) => {
     };
 
 // Allows user to pin repos
- const pinnedFormOnDom = (array) => {
+const pinnedFormOnDom = (array) => {
       let domString = "";
         domString += `<form id="pinForm">
         <div class="form-floating mb-3">
@@ -221,7 +221,7 @@ const pinsOnDom = (array) => {
       renderToDom("#pinnedForm", domString);
     };
 
-    const createPin = (e) => {
+const createPin = (e) => {
       e.preventDefault();
      
       const createId = (array) => {
@@ -247,8 +247,7 @@ const pinsOnDom = (array) => {
       pinForm.reset();  
     };
     
-    
-    pinnedForm.addEventListener('submit', createPin);
+  pinnedForm.addEventListener('submit', createPin);
 
 const startApp = () => {
   projectsOnDom(projects);
@@ -258,4 +257,4 @@ const startApp = () => {
   packageFormOnDom();
  };
  
- startApp();
+startApp();
