@@ -100,8 +100,7 @@ reposOnDom(repos);
 
 // Makes form/cards for Packages Page
 const packageFormOnDom = () => {
-  let domString = "";
-  domString += 
+  domString = 
   `<form id="packageReset">
   <div class="mb-3">
     <label for="packageName" class="form-label">Package</label>
@@ -275,8 +274,6 @@ const pinnedFormOnDom = (array) => {
       renderToDom("#pinnedForm", domString);
     };
 
-<<<<<<< HEAD
-=======
 const createPin = (e) => {
       e.preventDefault();
      
@@ -317,22 +314,8 @@ packagesPageBtn.addEventListener('click', () => {
   packageFormOnDom();
 });
 
->>>>>>> 0a61aa9c18fc69d66390d27c24b9f99a52e77b22
 const startApp = () => {
   projectsOnDom(projects);
-  
+  };
 
- };
-
- const targetDiv = document.querySelector("#repositories");
- const btn = document.querySelector("#reposBtn");
- btn.onclick = () => {
-  if (targetDiv.style.display !== "none") {
-    targetDiv.style.display = "none"; 
-  } else {
-    targetDiv.style.display = "block"
-  }
- };
-
- 
 startApp();
