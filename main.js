@@ -27,9 +27,9 @@ const repos = [
 const packages = [
   {
     id: 1,
-    name: "",
-    description: "",
-    registry: "",
+    name: "Original JS",
+    description: "My first javascript thing",
+    registry: "npm",
   },
 ];
 
@@ -93,19 +93,15 @@ const reposOnDom = (repos) => {
   </div>`;
   }
 
-
-  return domString;
+  renderToDom("#get", domString);
 };
-
-renderToDom("#get",reposOnDom(repos));
 
 reposOnDom(repos);
 
-// Makes form for Packages Page
+// Makes form/cards for Packages Page
 const packageFormOnDom = () => {
-  let domString = "";
-  domString += 
-  `<form>
+  domString = 
+  `<form id="packageReset">
   <div class="mb-3">
     <label for="packageName" class="form-label">Package</label>
     <input type="text" class="form-control" id="packageName">
@@ -125,9 +121,9 @@ renderToDom("#package-form", domString);
 };
 
 const packageOnDom = (array) => {
-  let domString = "";
+  let domString2 = "";
   for (const item of array) {
-    domString +=`
+    domString2 +=`
       <div class="card" style="width: 18rem" text-center container">
         <h5 class="card-header p-3">
           ${item.name}
@@ -142,8 +138,65 @@ const packageOnDom = (array) => {
       </div>`
   }
 
-  renderToDom("#package-card", domString);
+  renderToDom("#package-card", domString2);
 
+};
+
+const newId = (array) => {
+  if (array.length) {
+    const idArray = [];
+    for (const el of array) {
+      idArray.push(el.id);
+    }
+    return Math.max(...idArray) + 1;
+  } else {
+    return 0;
+  }
+}
+
+const repoForm = document.querySelector("#new-repo");
+
+const createRepo = (e) => {
+  e.preventDefault();
+
+  const repoObj = {
+    id: repos.length + 1,
+    name: document.querySelector("#name").value,
+  }
+
+  repos.push(repoObj);
+  reposOnDom(repos);
+  console.log(repos);
+};
+
+repoForm.addEventListener('submit', createRepo);
+
+const createPackage = (e) => {
+  e.preventDefault();
+
+  const newId = (array) => {
+    if (array.length) {
+      const idArray = [];
+      for (const el of array) {
+        idArray.push(el.id);
+      }
+      return Math.max(...idArray) + 1;
+    } else {
+      return 0;
+    }
+  }
+
+  const packageObj = {
+    id: newId(packages),
+    name: document.querySelector("#packageName").value,
+    description: document.querySelector("#packageDescription").value,
+    registry: document.querySelector("#packageRegistry").value,
+  }
+
+  packages.push(packageObj);
+  packageOnDom(packages);
+  packageReset.reset();
+  console.log(packages);
 };
 
 // Creates Cards for the Projects page
@@ -278,7 +331,10 @@ const renderPackagesSkel = () => {
   <div id="package-card"></div>
   <div id="package-form"></div>`
   renderToDom("#packages", packagesSkel);
+  const packageForm = document.querySelector("#package-form");
+  packageForm.addEventListener('submit', createPackage);
 };
+
 
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {
@@ -295,12 +351,3 @@ packagesPageBtn.addEventListener('click', () => {
   packageOnDom(packages);
   packageFormOnDom();
 });
-
-const startApp = () => {
-  //projectsOnDom(projects);
-  //pinsOnDom(pinned);
-  //pinnedFormOnDom();
-
- };
- 
-startApp();
