@@ -27,8 +27,9 @@ const repos = [
 const packages = [
   {
     id: 1,
-    name: "",
-    registry: "",
+    name: "Original JS",
+    description: "My first javascript thing",
+    registry: "npm",
   },
 ];
 
@@ -65,7 +66,7 @@ const projects =[
      },
   ];
 
-const overview = [
+const pinned = [
   {
     id: 1,
     repoName: "",
@@ -79,31 +80,7 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
-const repoFormOnDom = (array) => {
-  let domString ="";
-  domString +=
-  `<form id="new-repo">
-      <div class="name">
-        <label for="name" class="name">new repository</label>
-        <input type="text" class="form-control" id="name" aria-describedby="name">
-      </div>
-
-      <div class="decription">
-        <label for="decription" class="description">description</label>
-        <input type="text" class="form-control" id="description" aria-describedby="description">
-      </div>
-
-      <div class="type">
-        <label for="type" class="type">type</label>
-        <input type="text" class="form-control" id="type" aria-describedby="type">
-      </div>
-  
-      <button type="submit" class="btn btn-primary" id="Submit">Add</button>
-    </form>`
-    renderToDom("#repo-form", domString);
-
-};
-
+// Repos Functions
 const reposOnDom = (array) => {
   let domString = " ";
   for (const repo of array) {
@@ -117,16 +94,31 @@ const reposOnDom = (array) => {
   </div>`;
   }
 
-
   renderToDom("#get", domString);
-  
 };
 
+const repoFormOnDom = (array) => {
+  let domString ="";
+  domString +=
+  `<form id="repoReset">
+      <div class="name">
+        <label for="name" class="name">new repository</label>
+        <input type="text" class="form-control" id="name" aria-describedby="name">
+      </div>
+      <div class="decription">
+        <label for="decription" class="description">description</label>
+        <input type="text" class="form-control" id="description" aria-describedby="description">
+      </div>
+      <div class="type">
+        <label for="type" class="type">type</label>
+        <input type="text" class="form-control" id="type" aria-describedby="type">
+      </div>
+  
+      <button type="submit" class="btn btn-primary" id="Submit">Add</button>
+    </form>`
+    renderToDom("#repo-form", domString);
 
-
-// Allows user to create repo
-
-
+};
 
 const newRepos = (e) => {
   e.preventDefault();
@@ -136,25 +128,18 @@ const newRepos = (e) => {
     name: document.querySelector("#name").value,
     description: document.querySelector("#description").value,
     type: document.querySelector("#type").value,
-  
+
   }
 
   repos.push(newrepo);
   reposOnDom(repos);
-  repoform.reset();
+  repoReset.reset();
   console.log("works");
-}
-
-//repoform.addEventListener('submit', newRepos);
-
-
-
-
-// Makes form for Packages Page
+};
+// Makes form/cards for Packages Page
 const packageFormOnDom = () => {
-  let domString = "";
-  domString += 
-  `<form>
+  domString = 
+  `<form id="packageReset">
   <div class="mb-3">
     <label for="packageName" class="form-label">Package</label>
     <input type="text" class="form-control" id="packageName">
@@ -176,9 +161,9 @@ renderToDom("#package-form", domString);
 
 
 const packageOnDom = (array) => {
-  let domString = "";
+  let domString2 = "";
   for (const item of array) {
-    domString +=`
+    domString2 +=`
       <div class="card" style="width: 18rem" text-center container">
         <h5 class="card-header p-3">
           ${item.name}
@@ -193,8 +178,65 @@ const packageOnDom = (array) => {
       </div>`
   }
 
-  renderToDom("#package-card", domString);
+  renderToDom("#package-card", domString2);
 
+};
+
+const newId = (array) => {
+  if (array.length) {
+    const idArray = [];
+    for (const el of array) {
+      idArray.push(el.id);
+    }
+    return Math.max(...idArray) + 1;
+  } else {
+    return 0;
+  }
+}
+
+//const repoForm = document.querySelector("#new-repo");
+
+const createRepo = (e) => {
+  e.preventDefault();
+
+  const repoObj = {
+    id: repos.length + 1,
+    name: document.querySelector("#name").value,
+  }
+
+  repos.push(repoObj);
+  reposOnDom(repos);
+  console.log(repos);
+};
+
+//repoForm.addEventListener('submit', createRepo);
+
+const createPackage = (e) => {
+  e.preventDefault();
+
+  const newId = (array) => {
+    if (array.length) {
+      const idArray = [];
+      for (const el of array) {
+        idArray.push(el.id);
+      }
+      return Math.max(...idArray) + 1;
+    } else {
+      return 0;
+    }
+  }
+
+  const packageObj = {
+    id: newId(packages),
+    name: document.querySelector("#packageName").value,
+    description: document.querySelector("#packageDescription").value,
+    registry: document.querySelector("#packageRegistry").value,
+  }
+
+  packages.push(packageObj);
+  packageOnDom(packages);
+  packageReset.reset();
+  console.log(packages);
 };
 
 // Creates Cards for the Projects page
@@ -236,9 +278,9 @@ const createProject=(e)=>{
 projects.push(newProjectObj)
 projectsOnDom(projects)
 projectForm.reset();
- }
+ };
  
-projectForm.addEventListener('submit', createProject);
+//projectForm.addEventListener('submit', createProject);
   
  // Creates card for pinned repos
 const pinsOnDom = (array) => {
@@ -306,7 +348,6 @@ const createPin = (e) => {
       pinForm.reset();  
     };
     
-    // pinnedForm.addEventListener('submit', createPin);  
 
 const pagesClear = () => {
   let bodyString = "";
@@ -319,9 +360,10 @@ const pagesClear = () => {
 const renderOverviewSkel = () => {
   const overviewSkel = `<h1>Overview Page</h1>
   <div id="pinnedForm"></div>
-  <div id="overview"></div>
   <div id="pinnedCards"></div>`
   renderToDom("#overview", overviewSkel);
+  const pinForm = document.querySelector("#pinnedCards")
+  pinnedForm.addEventListener('submit', createPin);  
 };
 
 const renderPackagesSkel = () => {
@@ -329,6 +371,34 @@ const renderPackagesSkel = () => {
   <div id="package-card"></div>
   <div id="package-form"></div>`
   renderToDom("#packages", packagesSkel);
+  const packageForm = document.querySelector("#package-form");
+  packageForm.addEventListener('submit', createPackage);
+};
+
+const renderProjectsSkel = () => {
+  const projectsSkel = ` <h1>Projects Page</h1><form id="projectForm" type="reset">
+  <h3>Add a new Project</h3>
+  <div id="root"></div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Project Title</label>
+    <input type="text" class="form-control" id="projectName" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Project Description</label>
+    <input type="text" class="form-control" id="projectDescription">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Last Updated</label>
+    <input type="text" class="form-control" id="lastUpdated" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+`
+  renderToDom("#projects", projectsSkel);
+  const projectForm= document.querySelector('#projectForm');
+  projectForm.addEventListener('submit',createProject);
+  
 };
 
 const renderRepoSkel = () => {
@@ -340,7 +410,6 @@ const renderRepoSkel = () => {
   const repoform = document.querySelector('#repo-form');
   repoform.addEventListener('submit', newRepos);
 };
-
 
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {
@@ -360,27 +429,28 @@ packagesPageBtn.addEventListener('click', () => {
   
 });
 
+const projectsPageBtn = document.querySelector("#projectsBtn");
+projectsPageBtn.addEventListener('click', () => {
+  pagesClear();
+  renderProjectsSkel();
+  projectsOnDom(projects);
+  createProject();
+  projectForm.reset();
+});
+
 const ReposPageBtn = document.querySelector("#reposBtn");
 ReposPageBtn.addEventListener('click', () => {
   pagesClear();
   renderRepoSkel();
   reposOnDom(repos);
   repoFormOnDom();
-  
-  
 });
 
-/*const startApp = () => {
-  //projectsOnDom(projects);
-  //reposOnDom(repos);
+const startApp = () => {
+  pagesClear();
+  renderOverviewSkel();
   pinsOnDom(pinned);
   pinnedFormOnDom();
-  packageOnDom(packages);
-  packageFormOnDom();
-  events();
-  //pinsOnDom(pinned);
-  //pinnedFormOnDom();
+};
 
- };*/
- 
 startApp();
