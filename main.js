@@ -19,8 +19,8 @@ const repos = [
   {
     id: 1,
     name: "Tester",
-    description: "",
-    type: ""
+    description: "Public",
+    type: "Javascript"
   },
 ];
 
@@ -93,10 +93,35 @@ const reposOnDom = (repos) => {
   }
 
 
-  return domString;
+  renderToDom("#get", domString);
+  
 };
 
-renderToDom("#get",reposOnDom(repos));
+
+// Allows user to create repo
+const repoform = document.querySelector('#new-repo');
+
+
+const newRepos = (e) => {
+  e.preventDefault();
+
+  const newrepo = {
+    id: repos.length + 1,
+    name: document.querySelector("#name").value,
+    description: document.querySelector("#description").value,
+    type: document.querySelector("#type").value,
+  
+  }
+
+  repos.push(newrepo);
+  reposOnDom(repos);
+  repoform.reset();
+  console.log("works");
+}
+
+repoform.addEventListener('submit', newRepos);
+
+
 
 
 // Makes form for Packages Page
@@ -234,6 +259,7 @@ const startApp = () => {
   pinnedFormOnDom();
   packageOnDom(packages);
   packageFormOnDom();
+  events();
  };
  
  startApp();
