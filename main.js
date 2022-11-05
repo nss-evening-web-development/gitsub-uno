@@ -280,27 +280,55 @@ const createPin = (e) => {
       pinForm.reset();  
     };
     
-  pinnedForm.addEventListener('submit', createPin);
+    // pinnedForm.addEventListener('submit', createPin);  
+
+const pagesClear = () => {
+  let bodyString = "";
+  renderToDom("#overview", bodyString);
+  renderToDom("#projects", bodyString);
+  renderToDom("#packages", bodyString);
+  renderToDom("#repositories", bodyString);
+}; 
+
+const renderOverviewSkel = () => {
+  const overviewSkel = `<h1>Overview Page</h1>
+  <div id="pinnedForm"></div>
+  <div id="overview"></div>
+  <div id="pinnedCards"></div>`
+  renderToDom("#overview", overviewSkel);
+};
+
+const renderPackagesSkel = () => {
+  const packagesSkel = `<h1>Packages Page</h1>
+  <div id="package-card"></div>
+  <div id="package-form"></div>`
+  renderToDom("#packages", packagesSkel);
+};
 
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {
+  pagesClear();
+  renderOverviewSkel();
  
 });
 
 const packagesPageBtn = document.querySelector("#packagesBtn");
 packagesPageBtn.addEventListener('click', () => {
+  pagesClear();
+  renderPackagesSkel();
   
 });
 
 const startApp = () => {
-  projectsOnDom(projects);
+  //projectsOnDom(projects);
   reposOnDom(repos);
   pinsOnDom(pinned);
   pinnedFormOnDom();
   packageOnDom(packages);
   packageFormOnDom();
   events();
-  
+  //pinsOnDom(pinned);
+  //pinnedFormOnDom();
 
  };
  
