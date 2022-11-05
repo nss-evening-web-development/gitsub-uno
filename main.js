@@ -340,12 +340,3 @@ packagesPageBtn.addEventListener('click', () => {
   packageOnDom(packages);
   packageFormOnDom();
 });
-
-const startApp = () => {
-  //projectsOnDom(projects);
-  //pinsOnDom(pinned);
-  //pinnedFormOnDom();
-
- };
- 
-startApp();
