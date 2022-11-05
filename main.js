@@ -19,8 +19,8 @@ const repos = [
   {
     id: 1,
     name: "Tester",
-    description: "",
-    type: ""
+    description: "Public",
+    type: "Javascript"
   },
 ];
 
@@ -80,9 +80,10 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
-const reposOnDom = (repos) => {
+// Repos Functions
+const reposOnDom = (array) => {
   let domString = " ";
-  for (const repo of repos) {
+  for (const repo of array) {
     domString += `
     <div class="card" style="width: 18rem;">
     <h5 class="card-title">${repo.name}</h5>
@@ -96,6 +97,48 @@ const reposOnDom = (repos) => {
   renderToDom("#get", domString);
 };
 
+<<<<<<< HEAD
+=======
+const repoFormOnDom = (array) => {
+  let domString ="";
+  domString +=
+  `<form id="repoReset">
+      <div class="name">
+        <label for="name" class="name">new repository</label>
+        <input type="text" class="form-control" id="name" aria-describedby="name">
+      </div>
+      <div class="decription">
+        <label for="decription" class="description">description</label>
+        <input type="text" class="form-control" id="description" aria-describedby="description">
+      </div>
+      <div class="type">
+        <label for="type" class="type">type</label>
+        <input type="text" class="form-control" id="type" aria-describedby="type">
+      </div>
+  
+      <button type="submit" class="btn btn-primary" id="Submit">Add</button>
+    </form>`
+    renderToDom("#repo-form", domString);
+
+};
+
+const newRepos = (e) => {
+  e.preventDefault();
+
+  const newrepo = {
+    id: repos.length + 1,
+    name: document.querySelector("#name").value,
+    description: document.querySelector("#description").value,
+    type: document.querySelector("#type").value,
+
+  }
+
+  repos.push(newrepo);
+  reposOnDom(repos);
+  repoReset.reset();
+  console.log("works");
+};
+>>>>>>> 88daa0e32668ff33e695cf0f06fe3cd983ec56e5
 // Makes form/cards for Packages Page
 const packageFormOnDom = () => {
   domString = 
@@ -140,7 +183,23 @@ const packageOnDom = (array) => {
 
 };
 
+<<<<<<< HEAD
 const repoForm = document.querySelector("#new-repo");
+=======
+const newId = (array) => {
+  if (array.length) {
+    const idArray = [];
+    for (const el of array) {
+      idArray.push(el.id);
+    }
+    return Math.max(...idArray) + 1;
+  } else {
+    return 0;
+  }
+}
+
+//const repoForm = document.querySelector("#new-repo");
+>>>>>>> 88daa0e32668ff33e695cf0f06fe3cd983ec56e5
 
 const createRepo = (e) => {
   e.preventDefault();
@@ -155,7 +214,7 @@ const createRepo = (e) => {
   console.log(repos);
 };
 
-repoForm.addEventListener('submit', createRepo);
+//repoForm.addEventListener('submit', createRepo);
 
 const createPackage = (e) => {
 
@@ -225,9 +284,9 @@ const createProject=(e)=>{
 projects.push(newProjectObj)
 projectsOnDom(projects)
 projectForm.reset();
- }
+ };
  
-projectForm.addEventListener('submit', createProject);
+//projectForm.addEventListener('submit', createProject);
   
  // Creates card for pinned repos
 const pinsOnDom = (array) => {
@@ -322,6 +381,41 @@ const renderPackagesSkel = () => {
   packageForm.addEventListener('submit', createPackage);
 };
 
+const renderProjectsSkel = () => {
+  const projectsSkel = ` <h1>Projects Page</h1><form id="projectForm" type="reset">
+  <h3>Add a new Project</h3>
+  <div id="root"></div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Project Title</label>
+    <input type="text" class="form-control" id="projectName" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Project Description</label>
+    <input type="text" class="form-control" id="projectDescription">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Last Updated</label>
+    <input type="text" class="form-control" id="lastUpdated" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+`
+  renderToDom("#projects", projectsSkel);
+  const projectForm= document.querySelector('#projectForm');
+  projectForm.addEventListener('submit',createProject);
+  
+};
+
+const renderRepoSkel = () => {
+  const reposSkel = `
+  <h1>Repositories</h1> 
+    <div id="get"></div>
+    <div id="repo-form"></div>`
+  renderToDom("#repositories", reposSkel);
+  const repoform = document.querySelector('#repo-form');
+  repoform.addEventListener('submit', newRepos);
+};
 
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {
@@ -337,6 +431,23 @@ packagesPageBtn.addEventListener('click', () => {
   renderPackagesSkel();
   packageOnDom(packages);
   packageFormOnDom();
+});
+
+const projectsPageBtn = document.querySelector("#projectsBtn");
+projectsBtn.addEventListener('click', () => {
+  pagesClear();
+  renderProjectsSkel();
+  projectsOnDom(projects);
+  createProject();
+  projectForm.reset();
+});
+
+const ReposPageBtn = document.querySelector("#reposBtn");
+ReposPageBtn.addEventListener('click', () => {
+  pagesClear();
+  renderRepoSkel();
+  reposOnDom(repos);
+  repoFormOnDom();
 });
 
 const startApp = () => {
