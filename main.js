@@ -96,8 +96,6 @@ const reposOnDom = (repos) => {
   renderToDom("#get", domString);
 };
 
-reposOnDom(repos);
-
 // Makes form/cards for Packages Page
 const packageFormOnDom = () => {
   domString = 
@@ -142,18 +140,6 @@ const packageOnDom = (array) => {
 
 };
 
-const newId = (array) => {
-  if (array.length) {
-    const idArray = [];
-    for (const el of array) {
-      idArray.push(el.id);
-    }
-    return Math.max(...idArray) + 1;
-  } else {
-    return 0;
-  }
-}
-
 const repoForm = document.querySelector("#new-repo");
 
 const createRepo = (e) => {
@@ -172,6 +158,7 @@ const createRepo = (e) => {
 repoForm.addEventListener('submit', createRepo);
 
 const createPackage = (e) => {
+
   e.preventDefault();
 
   const newId = (array) => {
