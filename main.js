@@ -308,7 +308,6 @@ const createPin = (e) => {
       pinForm.reset();  
     };
     
-    // pinnedForm.addEventListener('submit', createPin);  
 
 const pagesClear = () => {
   let bodyString = "";
@@ -321,9 +320,10 @@ const pagesClear = () => {
 const renderOverviewSkel = () => {
   const overviewSkel = `<h1>Overview Page</h1>
   <div id="pinnedForm"></div>
-  <div id="overview"></div>
   <div id="pinnedCards"></div>`
   renderToDom("#overview", overviewSkel);
+  const pinForm = document.querySelector("#pinnedCards")
+  pinnedForm.addEventListener('submit', createPin);  
 };
 
 const renderPackagesSkel = () => {
@@ -351,3 +351,12 @@ packagesPageBtn.addEventListener('click', () => {
   packageOnDom(packages);
   packageFormOnDom();
 });
+
+const startApp = () => {
+  pagesClear();
+  renderOverviewSkel();
+  pinsOnDom(pinned);
+  pinnedFormOnDom();
+};
+
+startApp();
