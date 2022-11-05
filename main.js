@@ -97,8 +97,6 @@ const reposOnDom = (array) => {
   renderToDom("#get", domString);
 };
 
-<<<<<<< HEAD
-=======
 const repoFormOnDom = (array) => {
   let domString ="";
   domString +=
@@ -138,7 +136,6 @@ const newRepos = (e) => {
   repoReset.reset();
   console.log("works");
 };
->>>>>>> 88daa0e32668ff33e695cf0f06fe3cd983ec56e5
 // Makes form/cards for Packages Page
 const packageFormOnDom = () => {
   domString = 
@@ -183,24 +180,6 @@ const packageOnDom = (array) => {
 
 };
 
-<<<<<<< HEAD
-const repoForm = document.querySelector("#new-repo");
-=======
-const newId = (array) => {
-  if (array.length) {
-    const idArray = [];
-    for (const el of array) {
-      idArray.push(el.id);
-    }
-    return Math.max(...idArray) + 1;
-  } else {
-    return 0;
-  }
-}
-
-//const repoForm = document.querySelector("#new-repo");
->>>>>>> 88daa0e32668ff33e695cf0f06fe3cd983ec56e5
-
 const createRepo = (e) => {
   e.preventDefault();
 
@@ -213,8 +192,6 @@ const createRepo = (e) => {
   reposOnDom(repos);
   console.log(repos);
 };
-
-//repoForm.addEventListener('submit', createRepo);
 
 const createPackage = (e) => {
 
@@ -246,6 +223,28 @@ const createPackage = (e) => {
 };
 
 // Creates Cards for the Projects page
+const projectsFormOnDom = () => {
+  domString = `<form id="projectFormReset">
+  <h3>Add a new Project</h3>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Project Title</label>
+    <input type="text" class="form-control" id="projectName" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Project Description</label>
+    <input type="text" class="form-control" id="projectDescription">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Last Updated</label>
+    <input type="text" class="form-control" id="lastUpdated" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>`
+
+renderToDom("#project-form", domString);
+};
+
 const projectsOnDom = (array)=> {
   let domString="";
   for (const member of array) {
@@ -265,16 +264,13 @@ const projectsOnDom = (array)=> {
     }
   
     renderToDom("#root", domString);
-  }
-
-  const projectForm = document.querySelector('#projectForm');
-
+};
 
 // Allows user to add a project
-const createProject=(e)=>{
+const createProject = (e) => {
   e.preventDefault();
  
-  const newProjectObj={
+  const newProjectObj = {
    id: projects.length +1,
    name: document.querySelector('#projectName').value,
    description: document.querySelector('#projectDescription').value,
@@ -283,10 +279,9 @@ const createProject=(e)=>{
  }
 projects.push(newProjectObj)
 projectsOnDom(projects)
-projectForm.reset();
+projectFormReset.reset();
+console.log(projects);
  };
- 
-//projectForm.addEventListener('submit', createProject);
   
  // Creates card for pinned repos
 const pinsOnDom = (array) => {
@@ -382,28 +377,12 @@ const renderPackagesSkel = () => {
 };
 
 const renderProjectsSkel = () => {
-  const projectsSkel = ` <h1>Projects Page</h1><form id="projectForm" type="reset">
-  <h3>Add a new Project</h3>
+  const projectsSkel = `<h1>Projects Page</h1>
   <div id="root"></div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Project Title</label>
-    <input type="text" class="form-control" id="projectName" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text"></div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Project Description</label>
-    <input type="text" class="form-control" id="projectDescription">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Last Updated</label>
-    <input type="text" class="form-control" id="lastUpdated" aria-describedby="emailHelp">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-`
+  <div id="project-form"></div>`
   renderToDom("#projects", projectsSkel);
-  const projectForm= document.querySelector('#projectForm');
-  projectForm.addEventListener('submit',createProject);
+  const projectForm= document.querySelector('#project-form');
+  projectForm.addEventListener('submit', createProject);
   
 };
 
@@ -438,8 +417,7 @@ projectsBtn.addEventListener('click', () => {
   pagesClear();
   renderProjectsSkel();
   projectsOnDom(projects);
-  createProject();
-  projectForm.reset();
+  projectsFormOnDom();
 });
 
 const ReposPageBtn = document.querySelector("#reposBtn");
