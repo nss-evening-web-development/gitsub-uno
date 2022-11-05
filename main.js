@@ -272,7 +272,6 @@ const pinsOnDom = (array) => {
       renderToDom("#pinnedForm", domString);
     };
 
-
 const startApp = () => {
   projectsOnDom(projects);
   pinsOnDom(pinned);
@@ -280,5 +279,16 @@ const startApp = () => {
   packageOnDom(packages);
   packageFormOnDom();
  };
+
+ const targetDiv = document.querySelector("#repositories");
+ const btn = document.querySelector("#reposBtn");
+ btn.onclick = () => {
+  if (targetDiv.style.display !== "none") {
+    targetDiv.style.display = "none"; 
+  } else {
+    targetDiv.style.display = "block"
+  }
+ };
+
  
  startApp();
