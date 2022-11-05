@@ -169,7 +169,7 @@ const projectsOnDom = (array)=> {
     renderToDom("#root", domString);
   }
 
-  const projectForm = document.querySelector('#projectForm');
+  // const projectForm = document.querySelector('#projectForm');
 
 
 // Allows user to add a project
@@ -185,7 +185,7 @@ const createProject=(e)=>{
  }
 projects.push(newProjectObj)
 projectsOnDom(projects)
-projectForm.reset();
+// projectReset.reset();
  }
  
 
@@ -256,7 +256,7 @@ const createPin = (e) => {
       pinForm.reset();  
     };
     
-    // pinnedForm.addEventListener('submit', createPin);  
+  
 
 const pagesClear = () => {
   let bodyString = "";
@@ -281,6 +281,33 @@ const renderPackagesSkel = () => {
   renderToDom("#packages", packagesSkel);
 };
 
+const renderProjectsSkel = () => {
+  const projectsSkel = ` <h1>Projects Page</h1><form id="projectForm" id="projectReset">
+  <h3>Add a new Project</h3>
+  <div id="root"></div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Project Title</label>
+    <input type="text" class="form-control" id="projectName" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Project Description</label>
+    <input type="text" class="form-control" id="projectDescription">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Last Updated</label>
+    <input type="text" class="form-control" id="lastUpdated" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+`
+  renderToDom("#projects", projectsSkel);
+  const projectForm= document.querySelector('#projectForm');
+  projectForm.addEventListener('submit',createProject)
+  
+};
+
+
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {
   pagesClear();
@@ -297,11 +324,11 @@ packagesPageBtn.addEventListener('click', () => {
   packageFormOnDom();
 });
 
-const startApp = () => {
-  //projectsOnDom(projects);
-  //pinsOnDom(pinned);
-  //pinnedFormOnDom();
-
- };
- 
-startApp();
+const projectsPageBtn = document.querySelector("#projectsBtn");
+projectsBtn.addEventListener('click', () => {
+  pagesClear();
+  renderProjectsSkel();
+  projectsOnDom(projects);
+  createProject();
+  projectForm.reset();
+});
