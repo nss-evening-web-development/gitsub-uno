@@ -171,10 +171,20 @@ const createRepo = (e) => {
 
 repoForm.addEventListener('submit', createRepo);
 
-const packageForm = document.querySelector("#package-form");
-
 const createPackage = (e) => {
   e.preventDefault();
+
+  const newId = (array) => {
+    if (array.length) {
+      const idArray = [];
+      for (const el of array) {
+        idArray.push(el.id);
+      }
+      return Math.max(...idArray) + 1;
+    } else {
+      return 0;
+    }
+  }
 
   const packageObj = {
     id: newId(packages),
@@ -188,8 +198,6 @@ const createPackage = (e) => {
   packageReset.reset();
   console.log(packages);
 };
-
-packageForm.addEventListener('submit', createPackage);
 
 // Creates Cards for the Projects page
 const projectsOnDom = (array)=> {
@@ -323,7 +331,10 @@ const renderPackagesSkel = () => {
   <div id="package-card"></div>
   <div id="package-form"></div>`
   renderToDom("#packages", packagesSkel);
+  const packageForm = document.querySelector("#package-form");
+  packageForm.addEventListener('submit', createPackage);
 };
+
 
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {
