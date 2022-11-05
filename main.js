@@ -212,6 +212,14 @@ const pinnedFormOnDom = (array) => {
         <input type="text" class="form-control" id="pinRepoName">
         <label for="floatingInput">Repository Name</label>
         </div>
+        <ul>
+        <li><div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          ${repos.name}
+        </label>
+      </div></li>
+        </ul>
         <div class="form-check form-switch">
          <input class="form-check-input" type="checkbox" role="switch" id="favorite">
          <label class="form-check-label" for="flexSwitchCheckDefault">Favorite</label>
@@ -249,12 +257,22 @@ const createPin = (e) => {
     
   pinnedForm.addEventListener('submit', createPin);
 
-const startApp = () => {
-  projectsOnDom(projects);
+const overviewPageBtn = document.querySelector("#overviewBtn");
+overviewPageBtn.addEventListener('click', () => {
   pinsOnDom(pinned);
   pinnedFormOnDom();
+});
+
+const packagesPageBtn = document.querySelector("#packagesBtn");
+packagesPageBtn.addEventListener('click', () => {
   packageOnDom(packages);
   packageFormOnDom();
+});
+
+const startApp = () => {
+  //projectsOnDom(projects);
+  
+
  };
  
 startApp();
