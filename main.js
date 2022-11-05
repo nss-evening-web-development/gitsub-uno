@@ -185,6 +185,7 @@ const createProject=(e)=>{
  }
 projects.push(newProjectObj)
 projectsOnDom(projects)
+  projectForm.reset();
 // projectReset.reset();
  }
  
@@ -282,7 +283,7 @@ const renderPackagesSkel = () => {
 };
 
 const renderProjectsSkel = () => {
-  const projectsSkel = ` <h1>Projects Page</h1><form id="projectForm" id="projectReset">
+  const projectsSkel = ` <h1>Projects Page</h1><form id="projectForm" type="reset">
   <h3>Add a new Project</h3>
   <div id="root"></div>
   <div class="mb-3">
@@ -303,7 +304,7 @@ const renderProjectsSkel = () => {
 `
   renderToDom("#projects", projectsSkel);
   const projectForm= document.querySelector('#projectForm');
-  projectForm.addEventListener('submit',createProject)
+  projectForm.addEventListener('submit',createProject);
   
 };
 
@@ -330,5 +331,5 @@ projectsBtn.addEventListener('click', () => {
   renderProjectsSkel();
   projectsOnDom(projects);
   createProject();
-  projectForm.reset();
+
 });
