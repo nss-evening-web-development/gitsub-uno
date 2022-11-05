@@ -270,7 +270,7 @@ packagesPageBtn.addEventListener('click', () => {
 });
 
 const startApp = () => {
-  //projectsOnDom(projects);
+  projectsOnDom(projects);
   
 
  };
