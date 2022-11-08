@@ -81,7 +81,7 @@ const projects =[
 const pinned = [
   {
     id: 1,
-    repoName: "",
+    repoName: "Pet Adoption",
     favorite: true,
     type: "JavaScript",
   },
