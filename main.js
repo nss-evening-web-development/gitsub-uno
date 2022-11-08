@@ -1,6 +1,6 @@
 console.log("does this work?");
 // data structures
-const user=[
+const users =[
   { name: 'Crystal Burnett',
     socials: [
       {
@@ -324,6 +324,27 @@ const pinnedFormOnDom = (array) => {
       renderToDom("#pinnedForm", domString);
     };
 
+users.forEach(user => {
+  let div = document.querySelector("#profile")
+
+  div.innerHTML = div.innerHTML + `  <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${user.name}</h5>
+    <p class="card-text"></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">First</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>`
+});
+
 const createPin = (e) => {
       e.preventDefault();
      
@@ -408,6 +429,7 @@ const renderRepoSkel = () => {
   const repoform = document.querySelector('#repo-form');
   repoform.addEventListener('submit', newRepos);
 };
+
 
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {

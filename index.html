@@ -33,12 +33,14 @@
         </ul>
       </div>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input id="package-search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button id ="searching" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>
+
 <div id="pages">
+<div id="profile"></div>
   <div id="overview"></div>
 
   <div class="repoPage" id="repositories"></div>
@@ -46,8 +48,36 @@
   <div class="projectPage" id="projects"></div> 
 
   <div class="packagePage" id="packages"></div>
+  </div>
 
-  
+  <footer class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">2022 GitSub-Uno</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <button id="termsBtn">Terms</button>
+          </li>
+          <li class="nav-item">
+            <button id="privacyBtn">Privacy</button>
+          </li>
+          <li class="nav-item">
+            <button id="securityBtn">Security</button>
+          </li>
+          <li class="nav-item">
+            <button id="statusBtn">Status</button>
+          </li>
+          <li class="nav-item">
+            <button id="helpBtn">Help</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  </div>
+  </div>
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="main.js"></script>
