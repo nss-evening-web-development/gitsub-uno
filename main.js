@@ -22,6 +22,18 @@ const repos = [
     description: "Public",
     type: "Javascript"
   },
+  {
+    id: 2,
+    name: "Resume",
+    description: "Private",
+    type: "Html"
+  },
+  {
+    id: 3,
+    name: "3 baby",
+    description: "Public",
+    type: "Javascript"
+  },
 ];
 
 const packages = [
@@ -85,7 +97,7 @@ const reposOnDom = (array) => {
   let domString = " ";
   for (const repo of array) {
     domString += `
-    <div class="card" style="width: 18rem;">
+    <div class="repocard" style="width: 18rem;">
     <h5 class="card-title">${repo.name}</h5>
     <div class="card-body">
       <p class="card-team">${repo.description}</p>
@@ -103,15 +115,15 @@ const repoFormOnDom = (array) => {
   `<form id="repoReset">
       <div class="name">
         <label for="name" class="name">new repository</label>
-        <input type="text" class="form-control" id="name" aria-describedby="name">
+        <input type="text" class="form-control" id="name" aria-describedby="name" required>
       </div>
       <div class="decription">
         <label for="decription" class="description">description</label>
-        <input type="text" class="form-control" id="description" aria-describedby="description">
+        <input type="text" class="form-control" id="description" aria-describedby="description" required>
       </div>
       <div class="type">
         <label for="type" class="type">type</label>
-        <input type="text" class="form-control" id="type" aria-describedby="type">
+        <input type="text" class="form-control" id="type" aria-describedby="type" required>
       </div>
   
       <button type="submit" class="btn btn-primary" id="Submit">Add</button>
@@ -119,7 +131,6 @@ const repoFormOnDom = (array) => {
     renderToDom("#repo-form", domString);
 
 };
-
 const newRepos = (e) => {
   e.preventDefault();
 
@@ -136,6 +147,7 @@ const newRepos = (e) => {
   repoReset.reset();
   console.log("works");
 };
+
 // Makes form/cards for Packages Page
 const packageFormOnDom = () => {
   domString = 
