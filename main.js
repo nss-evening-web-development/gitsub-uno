@@ -11,8 +11,8 @@ const users =[
       smName: 'LinkedIn',
       url: 'https://linkedin'
     },
-    ]
-}
+    ],
+},
 ];
 
 const repos = [
@@ -83,6 +83,7 @@ const pinned = [
     id: 1,
     repoName: "",
     favorite: true,
+    type: "JavaScript",
   },
 ];
 
@@ -290,8 +291,9 @@ const pinsOnDom = (array) => {
       for (const pinned of array) {
         domString += `<div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">${pinned.repoName}</h5>
-          <p class="card-text favorite">${pinned.favorite}</p>
+          <h3 class="card-title">${pinned.repoName}</h3>
+          <p class="card-text favorite">${pinned.favorite ? '⭐' : ''}</p>
+          <h5 class="card-title">${pinned.type}</h5>
         </div>
       </div>`
         }
@@ -307,17 +309,18 @@ const pinnedFormOnDom = (array) => {
         <input type="text" class="form-control" id="pinRepoName">
         <label for="floatingInput">Repository Name</label>
         </div>
-        <ul>
-        <li><div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          ${repos.name}
-        </label>
-      </div></li>
-        </ul>
+        <!-- <select class="form-select" aria-label="Default select example" id="repoPin">
+        <option selected>Select Repository</option>  
+      </select> -->
+        <select class="form-select" aria-label="Default select example" id="type">
+          <option selected>Select Type</option>
+          <option value="HTML">HTML</option>
+          <option value="CSS">CSS</option>
+          <option value="JavaScript">JavaScript</option>
+        </select>
         <div class="form-check form-switch">
          <input class="form-check-input" type="checkbox" role="switch" id="favorite">
-         <label class="form-check-label" for="flexSwitchCheckDefault">Favorite</label>
+         <label class="form-check-label" for="flexSwitchCheckDefault"> Favorite </label>
         </div>
         <button type="submit" class="btn btn-primary">Pin</button>
       </form>`
@@ -364,6 +367,7 @@ const createPin = (e) => {
         id: createId(pinned),
         repoName: document.querySelector("#pinRepoName").value,
         favorite: document.querySelector("#favorite").checked,
+        type: document.querySelector("#type").value,
       }
     
       pinned.push(newPinnedObj);
@@ -371,6 +375,7 @@ const createPin = (e) => {
       pinForm.reset();  
     };
     
+
 
 const pagesClear = () => {
   let bodyString = "";
@@ -382,11 +387,11 @@ const pagesClear = () => {
 
 const renderOverviewSkel = () => {
   const overviewSkel = `<h1>Overview Page</h1>
-  <div id="pinnedForm"></div>
-  <div id="pinnedCards"></div>`
+  <div id="pinnedCards"></div>
+  <div id="pinnedForm"></div>`
   renderToDom("#overview", overviewSkel);
   const pinForm = document.querySelector("#pinnedCards")
-  pinnedForm.addEventListener('submit', createPin);  
+  pinnedForm.addEventListener('submit', createPin);
 };
 
 const renderPackagesSkel = () => {
