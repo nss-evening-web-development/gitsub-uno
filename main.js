@@ -182,18 +182,6 @@ const packageOnDom = (array) => {
 
 };
 
-const createRepo = (e) => {
-  e.preventDefault();
-
-  const repoObj = {
-    id: repos.length + 1,
-    name: document.querySelector("#name").value,
-  }
-
-  repos.push(repoObj);
-  reposOnDom(repos);
-  console.log(repos);
-};
 
 const createPackage = (e) => {
 
