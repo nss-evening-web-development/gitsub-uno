@@ -424,12 +424,10 @@ const renderRepoSkel = () => {
 
 const overviewPageBtn = document.querySelector("#overviewBtn");
 overviewPageBtn.addEventListener('click', () => {
-  profileOnDom();
   pagesClear();
   renderOverviewSkel();
   pinsOnDom(pinned);
   pinnedFormOnDom();
-  repoPin();
 });
 
 const packagesPageBtn = document.querySelector("#packagesBtn");
