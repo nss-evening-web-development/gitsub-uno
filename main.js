@@ -168,7 +168,7 @@ const packageOnDom = (array) => {
         </h5>
         <div class="card-body">
           <p class="card-text">${item.description}</p>
-          <button class="btn btn-danger" id="learn">Learn More</button>
+          <button class="btn btn-danger" id="delete--${item.id}">Delete</button>
         </div>
         <p class="card-footer text-muted">
           ${item.registry}
@@ -178,19 +178,6 @@ const packageOnDom = (array) => {
 
   renderToDom("#package-card", domString2);
 
-};
-
-const createRepo = (e) => {
-  e.preventDefault();
-
-  const repoObj = {
-    id: repos.length + 1,
-    name: document.querySelector("#name").value,
-  }
-
-  repos.push(repoObj);
-  reposOnDom(repos);
-  console.log(repos);
 };
 
 const createPackage = (e) => {
@@ -374,7 +361,19 @@ const renderPackagesSkel = () => {
   renderToDom("#packages", packagesSkel);
   const packageForm = document.querySelector("#package-form");
   packageForm.addEventListener('submit', createPackage);
-};
+  const remove = document.querySelector("#package-card");
+
+  remove.addEventListener('click', (e) => {
+    if (e.target.id.includes("delete--")) {
+      const [, id] = e.target.id.split("--");
+
+      const index = packages.findIndex(e => e.id === Number(id));
+      const removed = packages.splice(index, 1);
+
+      packageOnDom(packages);
+    }
+  }
+  )};
 
 const renderProjectsSkel = () => {
   const projectsSkel = `<h1>Projects Page</h1>
